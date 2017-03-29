@@ -1,5 +1,6 @@
 import praw
 import time
+import os
 import subprocess
 
 
@@ -23,11 +24,12 @@ def main():
 
 	while True:
 		for submission in user_agent.subreddit('me_irl').hot(limit=1):
-			run_command(get_command.format(submission.url))
+			filename = submission.url.split('/')[-1]
 
-		filename = submission.url.split('/')[-1]
-		run_command(log_command.format(filename))
-		run_command(commit_command.format(filename, filename))
+			if not os.path.isfile("./memes/{}".format(filename)):
+				run_command(get_command.format(submission.url))
+				run_command(log_command.format(filename))
+				run_command(commit_command.format(filename, filename))
 
 		time.sleep(43200)
 
