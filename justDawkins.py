@@ -19,6 +19,7 @@ def main():
 
 	get_command = 'wget {} --directory-prefix ./memes/'
 	log_command = 'echo "MEME ADDED! {} has been added to the meme repo" >> meme.log'
+	commit_command = 'git add {}; git commit -m "{} added to the meme repo"; git push'
 
 	while True:
 		for submission in user_agent.subreddit('me_irl').hot(limit=1):
@@ -26,6 +27,7 @@ def main():
 
 		filename = submission.url.split('/')[-1]
 		run_command(log_command.format(filename))
+		run_command(commit_command.format(filename, filename))
 
 		time.sleep(43200)
 
