@@ -19,7 +19,7 @@ def main():
 
 	get_command = 'wget {} --directory-prefix ./memes/'
 	log_command = 'echo "MEME ADDED! {} has been added to the meme repo" >> meme.log'
-	commit_command = 'git add ./memes/{}; git commit -m "{} added to the meme repo"; git push'
+	commit_command = 'git add ./memes/{}; git add memes.log; git commit -m "{} added to the meme repo"; git push'
 
 	while True:
 		for submission in user_agent.subreddit('me_irl').hot(limit=1):
