@@ -22,7 +22,7 @@ def main():
 	)
 
 	get_command = 'wget {} --directory-prefix memes/'
-	log_command = 'echo "MEME ADDED! {} has been added to the meme repo" >> meme.log'
+	log_command = 'echo "{} MEME ADDED! {} has been added to the meme repo" >> meme.log'
 	commit_command = 'git add memes/{}; git add meme.log; git commit -m "{} added to the meme repo"; git push'
 
 	while True:
@@ -32,7 +32,7 @@ def main():
 			if not os.path.isfile("./memes/{}".format(filename)):
 				run_command([
 					get_command.format(submission.url),
-					log_command.format(filename, str(datetime.datetime.now())),
+					log_command.format(str(datetime.datetime.now()), filename),
 					commit_command.format(filename, filename)
 				])
 
