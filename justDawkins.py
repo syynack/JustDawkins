@@ -1,5 +1,6 @@
 import praw
 import time
+import datetime
 import os
 import subprocess
 
@@ -31,11 +32,11 @@ def main():
 			if not os.path.isfile("./memes/{}".format(filename)):
 				run_command([
 					get_command.format(submission.url),
-					log_command.format(filename),
+					log_command.format(filename, str(datetime.datetime.now())),
 					commit_command.format(filename, filename)
 				])
 
-		time.sleep(43200)
+		time.sleep(21600)
 
 
 if __name__ == '__main__':
