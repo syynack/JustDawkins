@@ -36,7 +36,7 @@ def main():
 					commit_command.format(filename, filename)
 				])
 
-		time.sleep(21600)
+		time.sleep(30)
 
 
 if __name__ == '__main__':
