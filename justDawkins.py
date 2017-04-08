@@ -27,7 +27,7 @@ def main():
 
 	while True:
 		try:
-			for submission in user_agent.subreddit(subreddit).hot(limit=1):
+			for submission in user_agent.subreddit('me_irl').hot(limit=1):
 				filename = submission.url.split('/')[-1]
 
 				if not os.path.isfile("./memes/{}".format(filename)):
