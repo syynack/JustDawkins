@@ -26,15 +26,16 @@ def main():
 	commit_command = 'git add memes/{}; git add meme.log; git commit -m "{} added to the meme repo"; git push'
 
 	while True:
-		for submission in user_agent.subreddit('me_irl').hot(limit=1):
-			filename = submission.url.split('/')[-1]
+		for subreddit in ['me_irl', 'PrequelMemes', 'BlackPeopleTwitter', 'tinder']:
+			for submission in user_agent.subreddit(subreddit).hot(limit=1):
+				filename = submission.url.split('/')[-1]
 
-			if not os.path.isfile("./memes/{}".format(filename)):
-				run_command([
-					get_command.format(submission.url),
-					log_command.format(str(datetime.datetime.now()), filename),
-					commit_command.format(filename, filename)
-				])
+				if not os.path.isfile("./memes/{}".format(filename)):
+					run_command([
+						get_command.format(submission.url),
+						log_command.format(str(datetime.datetime.now()), filename),
+						commit_command.format(filename, filename)
+					])
 
 		time.sleep(30)
 
